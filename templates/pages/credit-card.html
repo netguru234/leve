@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Start Page Banner -->
+        <div class="page-banner-area">
+            <div class="container">
+                <div class="page-banner-content">
+                    <h2>Credit cards</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>Credit cards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Banner -->
+
+        <!-- Start Overview Box Area -->
+        <section class="overview-box-area ptb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="overview-box-image">
+                            <img src="{% static 'assets/img/overview-box-1.png' %}" alt="image">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="overview-box-content">
+                            <span>What is a credit card?</span>
+                            <h3>A credit card is a thin rectangular piece of plastic or metal purchased from a bank or financial services company.</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+
+                            <ul class="overview-box-list">
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</li>
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Overview Box Area -->
+
+        <!-- Start Payment Box Area -->
+        <section class="payment-box-area ptb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="payment-box-content">
+                            <span>How do credit cards work?</span>
+                            <h3>Credit cards can be used to make purchases online or in stores and pay bills.</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+
+                            <ul class="payment-box-list">
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</li>
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                <li><i class="flaticon-check"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="payment-box-image">
+                            <img src="{% static 'assets/img/payment-box.png' %}" alt="image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Payment Box Area -->
+
+        <!-- Start Credit Card Area -->
+        <section class="credit-card-area bg-ffffff pb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="credit-card-content">
+                            <span>Credit cards facility</span>
+                            <h3>We provide all the credit card facilities to our customers.</h3>
+                            <p>We provide customers with a variety of credit cards based on the convenience of work.</p>
+
+                            <ul class="credit-card-features">
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Standard credit cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Rewards credit cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Charge cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Subprime credit cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Limited purpose cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Balance transfer credit cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Student credit cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Secured credit cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Prepaid cards
+                                </li>
+                                <li>
+                                    <i class="flaticon-checkmark"></i> Business credit cards
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="credit-card-image-slider owl-carousel owl-theme">
+                            <div class="credit-card-image">
+                                <img src="{% static 'assets/img/credit-card/credit-card-1.png' %}" alt="image">
+                            </div>
+                            <div class="credit-card-image">
+                                <img src="{% static 'assets/img/credit-card/credit-card-2.png' %}" alt="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Credit Card Area -->
+
+        <!-- Start Using Card Area -->
+        <section class="using-card-area pb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="using-card-image">
+                            <img src="{% static 'assets/img/using-card.png' %}" alt="image">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="using-card-content">
+                            <span>Using credit card</span>
+                            <h3>We can use our credit cards daily for all that work</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+
+                            <div class="using-card-inner-content">
+                                <div class="number">
+                                    <span>1</span>
+                                </div>
+
+                                <h4>Balance transfers</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+
+                            <div class="using-card-inner-content">
+                                <div class="number">
+                                    <span>2</span>
+                                </div>
+
+                                <h4>Everyday spending</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+
+                            <div class="using-card-inner-content">
+                                <div class="number">
+                                    <span>3</span>
+                                </div>
+
+                                <h4>Large purchases</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+
+                            <div class="using-card-inner-content">
+                                <div class="number">
+                                    <span>4</span>
+                                </div>
+
+                                <h4>Travel</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Using Card Area -->
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% load humanize %}
+
+        <!-- Start Page Banner -->
+        <div class="page-banner-area item-bg2">
+            <div class="container">
+                <div class="page-banner-content">
+                    <h2>Welcome, {{ user.first_name }} {{ user.last_name }}!</h2>
+{#                    <ul>#}
+{#                        <li>#}
+{#                            <a href="index.html">Home</a>#}
+{#                        </li>#}
+{#                        <li>Services details</li>#}
+{#                    </ul>#}
+                </div>
+            </div>
+        </div>
+        <!-- End Page Banner -->
+
+        <!-- Start Services Details Area -->
+        <section class="services-details-area pt-100 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="services-details-desc">
+
+
+                            <div class="services-details-faq">
+                                <ul class="accordion">
+                                    <li class="accordion-item">
+                                        <a class="accordion-title" href="javascript:void(0)">
+                                            <i class='bx bx-plus'></i>
+                                            Click to See your Account Summary
+                                        </a>
+
+{#                                        <p class="accordion-content">#}
+{#                                            Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor massa sociis natoque penatibus. varius euismod lacus eget feugiat.#}
+{#                                        </p>#}
+
+                                        <div class="accordion-content">
+                                            <h4>
+                                                <strong>Account Number:</strong> <small>{{ user.user_ledger.account_number }}</small>
+                                            </h4>
+                                            <p>
+                                                <strong>Account Number:</strong> ${{ user.user_ledger.balance | floatformat:2 | intcomma}}
+                                               &nbsp; <a href="#" class="learn-btn">View Statement &raquo;</a>
+                                            </p>
+                                            <p>
+                                                <strong>Account Status:</strong> Active
+                                            </p>
+                                        </div>
+                                    </li>
+
+{#                                    <li class="accordion-item">#}
+{#                                        <a class="accordion-title" href="javascript:void(0)">#}
+{#                                            <i class='bx bx-plus'></i>#}
+{#                                            How do I activate my card?#}
+{#                                        </a>#}
+{##}
+{#                                        <p class="accordion-content">#}
+{#                                            Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor massa sociis natoque penatibus. varius euismod lacus eget feugiat.#}
+{#                                        </p>#}
+{#                                    </li>#}
+{##}
+{#                                    <li class="accordion-item">#}
+{#                                        <a class="accordion-title" href="javascript:void(0)">#}
+{#                                            <i class='bx bx-plus'></i>#}
+{#                                            How do I change my password?#}
+{#                                        </a>#}
+{##}
+{#                                        <p class="accordion-content">#}
+{#                                            Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor massa sociis natoque penatibus. varius euismod lacus eget feugiat.#}
+{#                                        </p>#}
+{#                                    </li>#}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="services-details-information">
+
+                            <div class="services-contact-info">
+                                <h3>Your Account Officer Details</h3>
+
+                                <ul>
+                                    <li>
+                                        <div class="icon">
+                                            <i class='bx bx-user-pin'></i>
+                                        </div>
+                                        <span>Phone:</span>
+                                        <a href="tel:+21453545413">{{ admin.phone }} </a>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <i class='bx bx-map'></i>
+                                        </div>
+                                        <span>Designation:</span>
+                                        Account Officer
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <i class='bx bx-envelope'></i>
+                                        </div>
+                                        <span>Email:</span>
+                                        <a href="mailto:{{ admin.email }}">{{ admin.email }}  </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{#                <div class="related-services">#}
+{#                    <h5>Related services</h5>#}
+{##}
+{#                    <div class="row">#}
+{#                        <div class="col-lg-3 col-md-6">#}
+{#                            <div class="single-services-item">#}
+{#                                <div class="icon">#}
+{#                                    <i class="flaticon-mobile-banking"></i>#}
+{#                                </div>#}
+{#                                <h3>#}
+{#                                    <a href="#">Mobile banking</a>#}
+{#                                </h3>#}
+{#                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                                <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-lg-3 col-md-6">#}
+{#                            <div class="single-services-item">#}
+{#                                <div class="icon">#}
+{#                                    <i class="flaticon-credit-card"></i>#}
+{#                                </div>#}
+{#                                <h3>#}
+{#                                    <a href="#">Credit cards</a>#}
+{#                                </h3>#}
+{#                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                                <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-lg-3 col-md-6">#}
+{#                            <div class="single-services-item">#}
+{#                                <div class="icon">#}
+{#                                    <i class="flaticon-payment-security"></i>#}
+{#                                </div>#}
+{#                                <h3>#}
+{#                                    <a href="services-details.html">Secure payment</a>#}
+{#                                </h3>#}
+{#                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                                <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <div class="col-lg-3 col-md-6">#}
+{#                            <div class="single-services-item">#}
+{#                                <div class="icon">#}
+{#                                    <i class="flaticon-savings"></i>#}
+{#                                </div>#}
+{#                                <h3>#}
+{#                                    <a href="services-details.html">Saving account</a>#}
+{#                                </h3>#}
+{#                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                                <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+            </div>
+        </section>
+        <!-- Start Services Details Area -->
+{% endblock %}

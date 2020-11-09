@@ -1,0 +1,512 @@
+<!doctype html>
+{% load static %}
+<html lang="zxx">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+        <!-- Boxicons CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/boxicons.min.css' %}">
+        <!-- Flaticon CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/nice-select.min.css' %}">
+        <!-- Owl Carousel CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+        <!-- Owl Carousel Default CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+        <!-- Odometer CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/odometer.min.css' %}">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css' %}">
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <!-- Responsive CSS -->
+		<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+
+		<title>Leve - Online Banking & Financial Services HTML Template</title>
+
+        <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+    </head>
+
+    <body>
+
+        <!-- Start Preloader Area -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="shadow"></div>
+                <div class="box"></div>
+            </div>
+        </div>
+        <!-- End Preloader Area -->
+
+        <!-- Start Top Header Area -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <ul class="top-header-information">
+                            <li>
+                                <i class='bx bx-envelope'></i>
+                                <a href="mailto:hello@gmail.com">hello@gmail.com</a>
+                            </li>
+
+                            <li>
+                                <i class='bx bxs-phone'></i>
+                                <a href="tel:15143125678">+1 (514) 312-5678</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6 text-right">
+                        <ul class="top-header-others">
+{#                            <li>#}
+{#                                <i class='bx bxs-map'></i>#}
+{#                                <a href="atm-and-bank-locations.html">ATMs location</a>#}
+{#                            </li>#}
+{##}
+{#                            <li class="languages-list">#}
+{#                                <select>#}
+{#                                    <option value="1">English</option>#}
+{#                                    <option value="2">Germany</option>#}
+{#                                    <option value="3">Australia</option>#}
+{#                                </select>#}
+{#                            </li>#}
+
+                            <li>
+                                {% if not user.is_authenticated %}
+                                    <i class='bx bx-user'></i>
+                                    <a href="{% url 'login' %}">Sign In</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Top Header Area -->
+
+        <!-- Start Navbar Area -->
+        <div class="navbar-area">
+            <div class="main-responsive-nav">
+                <div class="container">
+                    <div class="main-responsive-menu">
+                        <div class="logo">
+                            <a href="{% url 'home' %}">
+                                <img src="{% static 'assets/img/logo-1.png' %}" alt="image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-navbar">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <img src="{% static 'assets/img/logo-1.png' %}" alt="image">
+                        </a>
+
+                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                {% if user.is_authenticated %}
+                                        <li class="nav-item">
+                                            <a href="{% url 'dashboard' %}"
+                                                {% if "dashboard" in request.path %}
+                                                    class="nav-link active"
+                                                {% else %}
+                                                    class="nav-link"
+                                                {% endif %}
+                                            >
+                                                Account Home
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="{% url 'cards' %}"
+                                                {% if 'cards' in request.path %}
+                                                    class="nav-link active"
+                                                {% else %}
+                                                    class="nav-link"
+                                                {% endif %}
+                                            >
+                                                Statement
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="{% url 'transfer' %}"
+                                                {% if 'transfer' in request.path %}
+                                                    class="nav-link active"
+                                                {% else %}
+                                                    class="nav-link"
+                                                {% endif %}
+                                            >
+                                                Wire Transfer
+                                            </a>
+                                        </li>
+
+
+                                        <li class="nav-item">
+                                            <a href="loans.html" class="nav-link">
+                                                My Profile
+                                            </a>
+                                        </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'home' %}"
+                                            {% if "/" == request.path %}
+                                                class="nav-link active"
+                                            {% else %}
+                                                class="nav-link"
+                                            {% endif %}
+                                        >
+                                            Home One
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{% url 'cards' %}"
+                                            {% if 'cards' in request.path %}
+                                                class="nav-link active"
+                                            {% else %}
+                                                class="nav-link"
+                                            {% endif %}
+                                        >
+                                            Credit Cards
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{% url 'services' %}"
+                                            {% if 'services' in request.path %}
+                                                class="nav-link active"
+                                            {% else %}
+                                                class="nav-link"
+                                            {% endif %}
+                                        >
+                                            Services
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a href="loans.html" class="nav-link">
+                                            Loans
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            Pages
+                                            <i class='bx bx-chevron-down'></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a href="{% url 'about' %}"
+                                                    {% if 'about' in request.path %}
+                                                        class="nav-link active"
+                                                    {% else %}
+                                                        class="nav-link"
+                                                    {% endif %}
+                                                >
+                                                    About
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="{% url 'team' %}"
+                                                    {% if 'team' in request.path %}
+                                                        class="nav-link active"
+                                                    {% else %}
+                                                        class="nav-link"
+                                                    {% endif %}
+                                                >
+                                                    Team
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="security.html" class="nav-link">
+                                                    Security
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="my-account.html" class="nav-link">
+                                                    My Account
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="faq.html" class="nav-link">
+                                                    FAQ
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="privacy-policy.html" class="nav-link">
+                                                    Privacy Policy
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{% url 'contact' %}"
+                                            {% if 'contact' in request.path %}
+                                                class="nav-link active"
+                                            {% else %}
+                                                class="nav-link"
+                                            {% endif %}
+                                        >
+                                            Contact
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{% url 'login' %}" class="nav-link">
+                                            Log In To Online Banking
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+
+                            <div class="others-options d-flex align-items-center">
+                                {% if user.is_authenticated %}
+                                    <div class="option-item">
+{#                                        <a href="{% url 'logout' %}" class="default-btn"><i class='bx bxs-lock'></i> Log Out Securely</a>#}
+                                        <form action="{% url 'logout' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden">
+                                            <button class="default-btn"> <i class='bx bxs-lock'></i> Log Out Securely </button>
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    <div class="option-item">
+                                        <a href="{% url 'contact' %}" class="default-btn">Leave Us A Message</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="others-option-for-responsive">
+                <div class="container">
+                    <div class="dot-menu">
+                        <div class="inner">
+                            <div class="circle circle-one"></div>
+                            <div class="circle circle-two"></div>
+                            <div class="circle circle-three"></div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="option-inner">
+                            <div class="others-options d-flex align-items-center">
+                                <div class="option-item">
+                                    <form class="search-box">
+                                        <input type="text" class="form-control" placeholder="Search for..">
+                                        <button type="submit"><i class="flaticon-loupe"></i></button>
+                                    </form>
+                                </div>
+
+                                <div class="option-item">
+                                    <a href="open-account.html" class="default-btn">Open account</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Navbar Area -->
+
+ {% block content %}
+ 
+ {% endblock %}
+
+<!-- Start Footer Area -->
+        <section class="footer-area pt-100 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="footer-logo">
+                                <h2><a href="index.html">Leve</a></h2>
+
+                                <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
+
+{#                                <ul class="social">#}
+{#                                    <li>#}
+{#                                        <a href="#" class="facebook" target="_blank">#}
+{#                                            <i class='bx bxl-facebook'></i>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="#" class="twitter" target="_blank">#}
+{#                                            <i class='bx bxl-twitter'></i>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="#" class="pinterest" target="_blank">#}
+{#                                            <i class='bx bxl-instagram'></i>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="#" class="linkedin" target="_blank">#}
+{#                                            <i class='bx bxl-linkedin'></i>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h3>Contact</h3>
+
+                            <ul class="footer-contact-info">
+                                <li>
+                                    <i class='bx bxs-phone'></i>
+                                    <span>Phone</span>
+                                    <a href="tel:15147939-357">+1 (514) 7939-357</a>
+                                </li>
+                                <li>
+                                    <i class='bx bx-envelope'></i>
+                                    <span>Email</span>
+                                    <a href="mailto:hello@leve.com">hello@leve.com</a>
+                                </li>
+                                <li>
+                                    <i class='bx bx-map'></i>
+                                    <span>Address</span>
+                                    6890 Blvd, The Bronx, NY 1058 New York, USA
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single-footer-widget pl-5">
+                            <h3>Services</h3>
+
+                            <ul class="quick-links">
+                                <li>
+                                    <a href="#">Bank accounts</a>
+                                </li>
+                                <li>
+                                    <a href="#">Savings</a>
+                                </li>
+                                <li>
+                                    <a href="#">Credit cards</a>
+                                </li>
+                                <li>
+                                    <a href="#">Loans</a>
+                                </li>
+                                <li>
+                                    <a href="#">Car finance</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mobile banking</a>
+                                </li>
+                                <li>
+                                    <a href="#">Online banking</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+{#                    <div class="col-lg-3 col-sm-6">#}
+{#                        <div class="single-footer-widget">#}
+{#                            <h3>Help & guidance</h3>#}
+{##}
+{#                            <ul class="quick-links">#}
+{#                                <li>#}
+{#                                    <a href="#">Privacy statement</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Corporate information</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Online banking help</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Managing your money</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Proving your identity</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">International banking</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Help centre</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </section>
+        <!-- End Footer Area -->
+
+        <!-- Start Copy Right Area -->
+        <div class="copyright-area">
+            <div class="container">
+                <div class="copyright-area-content">
+                    <p>
+                        <i class='bx bx-copyright'></i>
+                        Copyright @2020 Leve. All Rights Reserved by
+                        <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End Copy Right Area -->
+
+        <!-- Start Go Top Area -->
+        <div class="go-top">
+            <i class='bx bx-up-arrow-alt'></i>
+        </div>
+        <!-- End Go Top Area -->
+
+        <!-- Jquery Slim JS -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <!-- Popper JS -->
+        <script src="{% static 'assets/js/popper.min.js' %}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+        <!-- Meanmenu JS -->
+        <script src="{% static 'assets/js/jquery.meanmenu.js' %}"></script>
+        <!-- Nice Select JS -->
+        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+        <!-- Owl Carousel JS -->
+        <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+        <!-- Magnific Popup JS -->
+        <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+        <!-- Odometer JS -->
+        <script src="{% static 'assets/js/odometer.min.js' %}"></script>
+        <!-- Jquery Appear JS -->
+        <script src="{% static 'assets/js/jquery.appear.min.js' %}"></script>
+        <!-- Ajaxchimp JS -->
+		<script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+		<!-- Form Validator JS -->
+		<script src="{% static 'assets/js/form-validator.min.js' %}"></script>
+		<!-- Contact JS -->
+        <script src="{% static 'assets/js/contact-form-script.js' %}"></script>
+        <!-- Wow JS -->
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+        <!-- Custom JS -->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+    </body>
+</html>
