@@ -9,6 +9,10 @@ verify_ssl = true
 django = "==3.0.6"
 pillow = "*"
 django-countries = "*"
+gunicorn = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.8"

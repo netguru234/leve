@@ -8,7 +8,7 @@ from users.models import User
 
 class Wire(AbstractTimeStamp):
     acct_owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(default=0.00, decimal_places=2, max_digits=10000000000)
+    amount = models.DecimalField(decimal_places=2, max_digits=19)
     bank_name = models.CharField(max_length=100)
     acct_num = models.CharField(max_length=50)
     swift_code = models.CharField(max_length=50)
@@ -38,7 +38,7 @@ class Transaction(AbstractTimeStamp):
 
     transaction_type = models.CharField(max_length=30, choices=TRANSACTION_CHOICES)
     acct_owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(default=0.00, decimal_places=2, max_digits=10000000000)
+    amount = models.DecimalField(decimal_places=2, max_digits=19)
 
     def __str__(self):
         return f"{self.acct_owner} - ${self.amount} ({self.transaction_type})"
