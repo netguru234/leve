@@ -93,9 +93,11 @@ WSGI_APPLICATION = 'onlbnk.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(default='postgres://iamyinka:success12@localhost/onl_bnk_a')
-}
+# DATABASES['default'] = dj_database_url.parse('postgres://iamyinka:success12@localhost/onl_bnk_a', conn_max_age=600)
+DATABASES = {'default': dj_database_url.config(default='postgres://iamyinka:success12@localhost:5432/onl_bnk_a')}
+
+# DATABASES['default'] = dj_database_url.config(default='postgres://iamyinka:success12@localhost/onl_bnk_a')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
