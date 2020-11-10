@@ -9,3 +9,5 @@ class LedgerAdmin(admin.ModelAdmin):
 
     def get_acct_owner(self, obj):
         return f"{obj.user}"
+
+    get_acct_owner.short_description = "Client Name"
