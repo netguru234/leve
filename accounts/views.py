@@ -3,11 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from ledgers.models import Ledger
+from location import location
 from transactions.models import Wire
 from django.contrib.auth.models import User
 
 
 def login(request):
+    data = location.sitemap()
     # check_user = User.objects.check(username=request.user.username)
 
     if request.user.is_authenticated:
@@ -29,7 +31,7 @@ def login(request):
                 print("Wrong username/password combination")
                 return redirect("login")
 
-    return render(request, "accounts/login.html")
+    return render(request, "accounts/login.html", data)
 
 
 def logout(request):
@@ -44,13 +46,14 @@ def logout(request):
 def dashboard(request):
     admin_user = User.objects.filter(is_superuser=True).first()
     data = {
-        "admin": admin_user
+        "admin": admin_user,
     }
     return render(request, "accounts/dashboard.html", data)
 
 
 @login_required(login_url='login')
 def wire_transfer(request):
+    data = location.sitemap()
     if request.method == "POST":
         user = request.user
         amount = request.POST["amount"]
@@ -76,4 +79,4 @@ def wire_transfer(request):
         ledger.save()
         return redirect("dashboard")
 
-    return render(request, "accounts/transfer.html")
+    return render(request, "accounts/transfer.html", data)

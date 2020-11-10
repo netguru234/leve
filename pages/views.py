@@ -1,17 +1,21 @@
 from django.shortcuts import render, redirect
 
 from contacts.models import Contact
+from location import location
 
 
 def index(request):
-    return render(request, 'pages/home.html')
+    data = location.sitemap()
+    return render(request, 'pages/home.html', data)
 
 
 def about(request):
-    return render(request, 'pages/about.html')
+    data = location.sitemap()
+    return render(request, 'pages/about.html', data)
 
 
 def contact(request):
+    data = location.sitemap()
     if request.method == "POST":
         full_name = request.POST["name"]
         email = request.POST["email"]
@@ -31,19 +35,22 @@ def contact(request):
         contact_form.save()
         return redirect("home")
 
-    return render(request, 'pages/contact.html')
+    return render(request, 'pages/contact.html', data)
 
 
 def cards(request):
-    return render(request, 'pages/credit-card.html')
+    data = location.sitemap()
+    return render(request, 'pages/credit-card.html', data)
 
 
 def services(request):
-    return render(request, 'pages/services.html')
+    data = location.sitemap()
+    return render(request, 'pages/services.html', data)
 
 
 def team(request):
-    return render(request, 'pages/team.html')
+    data = location.sitemap()
+    return render(request, 'pages/team.html', data)
 
 #
 # def index(request):
