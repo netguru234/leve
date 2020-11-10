@@ -1,9 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import forms
 from django_countries.fields import CountryField
 
 from core.models import AbstractTimeStamp
-from users.models import User
 
 
 class Wire(AbstractTimeStamp):

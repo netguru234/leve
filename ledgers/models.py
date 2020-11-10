@@ -1,7 +1,7 @@
 from django.db import models
 
 from core.models import AbstractTimeStamp
-from users.models import User
+from django.contrib.auth.models import User
 
 
 class Ledger(AbstractTimeStamp):

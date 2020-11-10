@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
     'ledgers.apps.LedgersConfig',
     'core.apps.CoreConfig',
     'pages.apps.PagesConfig',
@@ -137,7 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -148,3 +147,6 @@ STATICFILES_DIRS = [
 
 # WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_REDIRECT_URL = "dashboard"
+

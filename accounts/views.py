@@ -4,13 +4,13 @@ from django.shortcuts import render, redirect
 
 from ledgers.models import Ledger
 from transactions.models import Wire
-from users.models import User
+from django.contrib.auth.models import User
 
 
 def login(request):
-    check_user = User.objects.filter(username=request.user.username).first()
+    # check_user = User.objects.check(username=request.user.username)
 
-    if check_user:
+    if request.user.is_authenticated:
         return redirect('dashboard')
     else:
         if request.method == "POST":
@@ -19,9 +19,13 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
 
             if user is not None:
+                print(user)
+                print(username, password)
                 auth.login(request, user)
                 return redirect('dashboard')
             else:
+                print(user)
+                print(username, password)
                 print("Wrong username/password combination")
                 return redirect("login")
 

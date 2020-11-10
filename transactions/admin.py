@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from ledgers.models import Ledger
 from transactions.models import Transaction, Wire
-from users.models import User
+from django.contrib.auth.models import User
 
 
 @admin.register(Transaction, Wire)
