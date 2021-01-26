@@ -27,7 +27,7 @@ SECRET_KEY = 'ovcu5gp-edd47m7qlj@_&*49rxfd=9pa1j%0^f6+br6^h6(iz!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "levebnk.herokuapp.com"
+    # "levebnk.herokuapp.com"
 ]
 
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'transactions.apps.TransactionsConfig',
     'django.contrib.humanize',
     'django_countries',
+    'django_twilio',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,18 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = "dashboard"
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MEDIA_URL = '/media/'
+
+
+# TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+# TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+# TWILIO_NUMBER = os.getenv("TWILIO_NUMBER")
+TWILIO_ACCOUNT_SID = "ACf10b95bdbee60c1d50e2f9fe4d26c9e4"
+TWILIO_AUTH_TOKEN = "c7d4c380713ffaecd18b3d9a390deb37"
+TWILIO_NUMBER = "+19728517413"
+
+
+
+print(TWILIO_ACCOUNT_SID)

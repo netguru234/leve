@@ -25,6 +25,9 @@
         <link rel="stylesheet" href="{% static 'assets/css/odometer.min.css' %}">
         <!-- Magnific Popup CSS -->
         <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/toastr.min.css' %}" media="all">
+
         <!-- Style CSS -->
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
         <!-- Responsive CSS -->
@@ -156,8 +159,14 @@
 
 
                                         <li class="nav-item">
-                                            <a href="loans.html" class="nav-link">
-                                                My Profile
+                                            <a href="{% url 'documents' %}"
+                                                {% if 'documents' in request.path %}
+                                                    class="nav-link active"
+                                                {% else %}
+                                                    class="nav-link"
+                                                {% endif %}
+                                            >
+                                                Documents
                                             </a>
                                         </li>
                                 {% else %}
@@ -169,7 +178,7 @@
                                                 class="nav-link"
                                             {% endif %}
                                         >
-                                            Home One
+                                            Home
                                         </a>
                                     </li>
 
@@ -474,7 +483,7 @@
                     <p>
                         <i class='bx bx-copyright'></i>
                         Copyright @2020 Leve. All Rights Reserved by
-                        <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                        <a href="{% url 'home' %}" target="_blank">Leve</a>
                     </p>
                 </div>
             </div>
@@ -515,5 +524,12 @@
         <script src="{% static 'assets/js/wow.min.js' %}"></script>
         <!-- Custom JS -->
         <script src="{% static 'assets/js/main.js' %}"></script>
+        <script type="text/javascript" src="{% static 'assets/js/toastr.min.js' %}"></script>
+
+        {% for message in messages %}
+            <script>
+                toastr.{{ message.tags }}("{{ message }}");
+            </script>
+        {% endfor %}
     </body>
 </html>

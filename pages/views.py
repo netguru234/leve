@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from contacts.models import Contact
@@ -33,6 +34,7 @@ def contact(request):
         )
 
         contact_form.save()
+        messages.success(request, "Thank you for contacting us. A representative will respond to you shortly!")
         return redirect("home")
 
     return render(request, 'pages/contact.html', data)
@@ -48,9 +50,9 @@ def services(request):
     return render(request, 'pages/services.html', data)
 
 
-def team(request):
+def documents(request):
     data = location.sitemap()
-    return render(request, 'pages/team.html', data)
+    return render(request, 'pages/documents.html', data)
 
 #
 # def index(request):

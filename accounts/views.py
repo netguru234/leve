@@ -1,6 +1,10 @@
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+
+from django.conf import settings
+# from django.http import HttpResponse
+from twilio.rest import Client
 
 from ledgers.models import Ledger
 from location import location
@@ -24,11 +28,13 @@ def login(request):
                 print(user)
                 print(username, password)
                 auth.login(request, user)
+                messages.success(request, "Logged in successfully!")
                 return redirect('dashboard')
             else:
-                print(user)
-                print(username, password)
-                print("Wrong username/password combination")
+                messages.error(request, "Wrong username/password combination")
+                # print(user)
+                # print(username, password)
+                # print("Wrong username/password combination")
                 return redirect("login")
 
     return render(request, "accounts/login.html", data)
@@ -37,6 +43,7 @@ def login(request):
 def logout(request):
     if request.method == "POST":
         auth.logout(request)
+        messages.success(request, "You are successfully logged out!")
         return redirect("home")
 
     return redirect("home")
@@ -73,10 +80,20 @@ def wire_transfer(request):
             recipient=recipient
         )
         funds_transfer.save()
+        # print(user.user_ledger.phone, settings.TWILIO_NUMBER)
+        # print(send_sms.sid)
         user_balance = user.user_ledger.balance - int(amount)
         ledger = Ledger.objects.filter(user=user).first()
         ledger.balance = user_balance
         ledger.save()
+        message_to_broadcast = f"TRANSFER ALERT!!! Your transfer of USD{amount} was successfully " \
+                               f"completed!\nAvailable " \
+                               f"Balance: USD{user.user_ledger.balance}"
+        client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+        send_sms = client.messages.create(to=user.user_ledger.phone,
+                                          from_=settings.TWILIO_NUMBER,
+                                          body=message_to_broadcast)
+        messages.success(request, "Transfer completed successfully!")
         return redirect("dashboard")
 
     return render(request, "accounts/transfer.html", data)
