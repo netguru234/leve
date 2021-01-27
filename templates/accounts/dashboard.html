@@ -47,8 +47,10 @@
                                                 <strong>Account Number:</strong> <small>{{ user.user_ledger.account_number }}</small>
                                             </h4>
                                             <p>
-                                                <strong>Account Number:</strong> ${{ user.user_ledger.balance | floatformat:2 | intcomma}}
-                                               &nbsp; <a href="#" class="learn-btn">View Statement &raquo;</a>
+                                                <strong>Account Balance:</strong>
+                                                ${{ user.user_ledger.balance | floatformat:2 | intcomma}}
+                                               &nbsp; <a href="{% url 'statement' %}" class="learn-btn">View Statement
+                                                &raquo;</a>
                                             </p>
                                             <p>
                                                 <strong>Account Status:</strong> Active

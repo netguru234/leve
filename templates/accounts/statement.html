@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% load humanize %}
+
+        <!-- Start Page Banner -->
+        <div class="page-banner-area item-bg2">
+            <div class="container">
+                <div class="page-banner-content">
+                    <h2>Transaction Statement for {{ user.first_name }} {{ user.last_name }} <small
+                            style="text-decoration: underline">
+                        {{ user.user_ledger.account_number }}</small>!</h2>
+{#                    <ul>#}
+{#                        <li>#}
+{#                            <a href="index.html">Home</a>#}
+{#                        </li>#}
+{#                        <li>Services details</li>#}
+{#                    </ul>#}
+                </div>
+            </div>
+        </div>
+        <!-- End Page Banner -->
+
+        <!-- Start Table Area -->
+        <div class="table-area pt-100 pb-70">
+            <div class="container">
+{#                <div class="section-title">#}
+{#                    <p>There are <b>8 banks</b> and <b>99 ATMs</b> in the city of Texax</p>#}
+{#                </div>#}
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>
+                                Recipient
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Transaction Type
+                            </th>
+                            <th>
+                                Recipient Account
+                            </th>
+                            <th>
+                                Bank Name
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for tf in tfs %}
+                                <tr>
+                                    <th>{{ tf.recipient }}</th>
+                                    <td>${{ tf.amount }}</td>
+                                    <td>Wire Transfer</td>
+                                    <td>{{ tf.acct_num }}</td>
+                                    <td>{{ tf.bank_name }} &mdash; {{ tf.country.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- End Table Area -->
+{% endblock %}

@@ -1,3 +1,4 @@
+import os
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -59,6 +60,15 @@ def dashboard(request):
 
 
 @login_required(login_url='login')
+def statement(request):
+    tfs = request.user.user_tfs.all()
+    data = {
+        "tfs": tfs
+    }
+    return render(request, "accounts/statement.html", data)
+
+
+@login_required(login_url='login')
 def wire_transfer(request):
     data = location.sitemap()
     if request.method == "POST":
@@ -74,6 +84,10 @@ def wire_transfer(request):
         zip_code = request.POST["zip_code"]
         recipient = request.POST["recipient"]
 
+        if int(amount) > user.user_ledger.balance:
+            messages.error(request, "Insufficient funds in your account!!!")
+            return render(request, "accounts/transfer.html", data)
+
         funds_transfer = Wire(
             acct_owner=user, amount=amount, bank_name=bank_name, acct_num=acct_num, swift_code=swift_code,
             bank_address=bank_address, bank_phone=bank_phone, country=country, state=state, zip_code=zip_code,
@@ -86,13 +100,14 @@ def wire_transfer(request):
         ledger = Ledger.objects.filter(user=user).first()
         ledger.balance = user_balance
         ledger.save()
-        message_to_broadcast = f"TRANSFER ALERT!!! Your transfer of USD{amount} was successfully " \
-                               f"completed!\nAvailable " \
-                               f"Balance: USD{user.user_ledger.balance}"
-        client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-        send_sms = client.messages.create(to=user.user_ledger.phone,
-                                          from_=settings.TWILIO_NUMBER,
-                                          body=message_to_broadcast)
+        if ledger is not None:
+            message_to_broadcast = f"TRANSFER ALERT!!! Your transfer of USD{amount} was successfully " \
+                                   f"completed!\nAvailable " \
+                                   f"Balance: USD{ledger.balance}"
+            client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+            send_sms = client.messages.create(to=user.user_ledger.phone,
+                                              from_=settings.T_NUMBER,
+                                              body=message_to_broadcast)
         messages.success(request, "Transfer completed successfully!")
         return redirect("dashboard")
 

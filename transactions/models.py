@@ -7,7 +7,7 @@ from core.models import AbstractTimeStamp
 
 
 class Wire(AbstractTimeStamp):
-    acct_owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    acct_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_tfs")
     amount = models.DecimalField(decimal_places=2, max_digits=19)
     bank_name = models.CharField(max_length=100)
     acct_num = models.CharField(max_length=50)
@@ -26,6 +26,9 @@ class Wire(AbstractTimeStamp):
     class CustomForm(forms.Form):
         country = CountryField().formfield()
 
+    class Meta:
+        ordering = ("-created_at",)
+
 
 class Transaction(AbstractTimeStamp):
     DEBIT = "debit"
@@ -37,7 +40,7 @@ class Transaction(AbstractTimeStamp):
     )
 
     transaction_type = models.CharField(max_length=30, choices=TRANSACTION_CHOICES)
-    acct_owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    acct_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_transactions")
     amount = models.DecimalField(decimal_places=2, max_digits=19)
 
     def __str__(self):

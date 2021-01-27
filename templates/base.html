@@ -134,8 +134,8 @@
                                         </li>
 
                                         <li class="nav-item">
-                                            <a href="{% url 'cards' %}"
-                                                {% if 'cards' in request.path %}
+                                            <a href="{% url 'statement' %}"
+                                                {% if 'statement' in request.path %}
                                                     class="nav-link active"
                                                 {% else %}
                                                     class="nav-link"
@@ -361,7 +361,7 @@
                             <div class="footer-logo">
                                 <h2><a href="index.html">Leve</a></h2>
 
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>
+{#                                <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua.</p>#}
 
 {#                                <ul class="social">#}
 {#                                    <li>#}
@@ -482,8 +482,8 @@
                 <div class="copyright-area-content">
                     <p>
                         <i class='bx bx-copyright'></i>
-                        Copyright @2020 Leve. All Rights Reserved by
-                        <a href="{% url 'home' %}" target="_blank">Leve</a>
+                        Copyright @2020 Leve Banking. All Rights Reserved
+{#                        <a href="{% url 'home' %}" target="_blank">Leve</a>#}
                     </p>
                 </div>
             </div>
