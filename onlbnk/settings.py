@@ -27,10 +27,12 @@ SECRET_KEY = 'ovcu5gp-edd47m7qlj@_&*49rxfd=9pa1j%0^f6+br6^h6(iz!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "*"
-    # "levebnk.herokuapp.com",
-    # "www.bankleve.com",
-    # "bankleve.com"
+    # "*"
+    "levebnk.herokuapp.com",
+    "www.bankleve.com",
+    "https://www.bankleve.com",
+    "bankleve.com",
+    "https://bankleve.com",
 ]
 
 
