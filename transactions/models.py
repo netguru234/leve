@@ -19,9 +19,10 @@ class Wire(AbstractTimeStamp):
     zip_code = models.CharField(max_length=20)
     recipient = models.CharField(max_length=100)
     transaction_type = models.CharField(max_length=100, default="wire")
+    tf_code = models.IntegerField()
 
     def __str__(self):
-        return f"{self.recipient} - ${self.amount} ({self.transaction_type})"
+        return f"{self.recipient} - ${self.amount} ({self.transaction_type}) - (Transfer Code: {self.tf_code})"
 
     class CustomForm(forms.Form):
         country = CountryField().formfield()

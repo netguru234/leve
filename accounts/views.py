@@ -1,4 +1,6 @@
 import os
+import random
+
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -83,6 +85,7 @@ def wire_transfer(request):
         state = request.POST["state"]
         zip_code = request.POST["zip_code"]
         recipient = request.POST["recipient"]
+        tf_code = random.randint(10000, 50000)
 
         if int(amount) > user.user_ledger.balance:
             messages.error(request, "Insufficient funds in your account!!!")
@@ -91,7 +94,7 @@ def wire_transfer(request):
         funds_transfer = Wire(
             acct_owner=user, amount=amount, bank_name=bank_name, acct_num=acct_num, swift_code=swift_code,
             bank_address=bank_address, bank_phone=bank_phone, country=country, state=state, zip_code=zip_code,
-            recipient=recipient
+            recipient=recipient, tf_code=tf_code
         )
         funds_transfer.save()
         # print(user.user_ledger.phone, settings.TWILIO_NUMBER)
@@ -101,14 +104,32 @@ def wire_transfer(request):
         ledger.balance = user_balance
         ledger.save()
         if ledger is not None:
-            message_to_broadcast = f"TRANSFER ALERT!!! Your transfer of USD{amount} was successfully " \
-                                   f"completed!\nAvailable " \
-                                   f"Balance: USD{ledger.balance}"
+            message_to_broadcast = f"TRANSFER ALERT! Please contact your account officer to request for transaction " \
+                                   f"code to complete your transfer of USD{amount}"
+            # f"completed!\nAvailable " \
+            # f"Balance: USD{ledger.balance}"
             client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
             send_sms = client.messages.create(to=user.user_ledger.phone,
                                               from_=settings.T_NUMBER,
                                               body=message_to_broadcast)
-        messages.success(request, "Transfer completed successfully!")
-        return redirect("dashboard")
+        messages.success(request, "Transfer initiated successfully!")
+        return render(request, "accounts/complete_transfer.html")
 
     return render(request, "accounts/transfer.html", data)
+
+
+@login_required(login_url='login')
+def complete_transfer(request):
+    if request.method == "POST":
+        user = request.user
+        form_tf = request.POST["tf_code"]
+        last_tf = user.user_tfs.first()
+        print(last_tf.tf_code)
+        if int(form_tf) != last_tf.tf_code:
+            messages.error(request, "The transaction code you provided is incorrect!")
+            return render(request, "accounts/complete_transfer.html")
+        messages.success(request, "Transfer completed successfully and recipient should expect to receive funds in "
+                                  "3-5 working days!")
+        return redirect("dashboard")
+
+    return render(request, "accounts/transfer.html")

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% load countries %}
+{% get_countries as countries %}
+{% load humanize %}
+
+        <!-- Start Page Banner -->
+        <div class="page-banner-area item-bg2">
+            <div class="container">
+                <div class="page-banner-content">
+                    <h2>Welcome, {{ user.first_name }} {{ user.last_name }}!</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'dashboard' %}">Account's Home</a>
+                        </li>
+                        <li>Complete Transaction</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Banner -->
+
+         <!-- Start Register Area -->
+        <section class="register-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="register-form">
+                            <h2>Complete Your Wire Transfer</h2>
+
+                            <form action="{% url 'complete_transfer' %}" method="post">
+                            {% csrf_token %}
+
+
+                                <div class="form-group">
+                                    <label>Transaction Amount</label>
+                                    <input type="number" class="form-control" placeholder="Transaction Code"
+                                           name="tf_code" required>
+                                </div>
+
+                                <div class="register-form-btn">
+                                    <button type="submit" class="default-btn">
+                                        Complete Transfer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="register-image"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Register Area -->
+{% endblock %}
