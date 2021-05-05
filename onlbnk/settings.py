@@ -100,7 +100,8 @@ WSGI_APPLICATION = 'onlbnk.wsgi.application'
 # }
 
 # DATABASES['default'] = dj_database_url.parse('postgres://iamyinka:success12@localhost/onl_bnk_a', conn_max_age=600)
-DATABASES = {'default': dj_database_url.config(default='postgres://iamyinka:success12@localhost:5432/onl_bnk_a')}
+DATABASES = {'default': dj_database_url.config(
+    default='postgres://iamyinka:success12@localhost:5432/onl_bnk_a')}
 
 # DATABASES['default'] = dj_database_url.config(default='postgres://iamyinka:success12@localhost/onl_bnk_a')
 
@@ -165,7 +166,3 @@ MEDIA_URL = '/media/'
 ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
 AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
 T_NUMBER = os.environ.get("TWILIO_NUMBER")
-
-
-
-

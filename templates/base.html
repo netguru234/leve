@@ -169,6 +169,15 @@
                                                 Documents
                                             </a>
                                         </li>
+
+
+                                        <li class="nav-item">
+                                            <form action="{% url 'logout' %}" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden">
+                                                <button class="default-btn"> <i class='bx bxs-lock'></i> Log Out Securely </button>
+                                            </form>
+                                        </li>
                                 {% else %}
                                     <li class="nav-item">
                                         <a href="{% url 'home' %}"
